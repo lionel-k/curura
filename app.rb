@@ -1,5 +1,7 @@
 require 'sinatra'
 
+before { cache_control :no_store }
+
 set :bind, '0.0.0.0'
 
 get '/' do
