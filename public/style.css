@@ -72,3 +72,17 @@ button:hover {
     font-size: 2rem; /* Adjust font size for smaller devices */
   }
 }
+
+#correct-words-container {
+  margin-top: 20px;
+}
+
+#correct-words-list {
+  list-style-type: none; /* Removes the default list bullets */
+  padding: 0;
+}
+
+#correct-words-list li {
+  font-size: 2rem; /* Adjust based on your design */
+  margin: 5px 0;
+}

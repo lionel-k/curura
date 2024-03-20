@@ -61,6 +61,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentWord = words[currentWordIndex];
     if (userInput.value.trim().toLowerCase() === currentWord.toLowerCase()) {
       correctWordsCount++;
+
+      // Append the correctly guessed word to the list
+      const correctWordsList = document.getElementById("correct-words-list");
+      const listItem = document.createElement("li");
+      listItem.textContent = currentWord; // Or use userInput.value for the user's input
+      correctWordsList.appendChild(listItem);
+
       moveToNextWord();
     }
     userInput.value = ""; // Clear input field after each submission
