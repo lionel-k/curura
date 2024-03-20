@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let correctWordsCount = getTodayCorrectWordsCount(); // Get today's correct words count if available
   let countdown;
   let gameDuration = 10;
+  const today = new Date().toISOString().split("T")[0];
 
   function getTodayCorrectWordsCount() {
     const today = new Date().toISOString().split("T")[0];
@@ -86,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Update the results display
     const resultsDisplay = document.getElementById("results");
-    resultsDisplay.textContent = `Today you have found: ${correctWordsCount} correct words.`;
+    resultsDisplay.textContent = `Today ${today}, you have found: ${correctWordsCount} correct words.`;
 
     storeResultsInLocalStorage();
   }
