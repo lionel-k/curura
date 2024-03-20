@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentWordIndex = 0;
   let correctWordsCount = getTodayCorrectWordsCount(); // Get today's correct words count if available
   let countdown;
+  let gameDuration = 10;
 
   function getTodayCorrectWordsCount() {
     const today = new Date().toISOString().split("T")[0];
@@ -32,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function calculateRemainingTime(startTime) {
     const now = new Date();
     const elapsedSeconds = Math.floor((now - startTime) / 1000);
-    return Math.max(60 - elapsedSeconds, 0);
+    return Math.max(gameDuration - elapsedSeconds, 0);
   }
 
   function shuffleWord(word) {
@@ -97,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!startTime) {
     const now = new Date();
     saveGameStartTime(now);
-    startTimer(60);
+    startTimer(gameDuration);
   } else {
     const remainingTime = calculateRemainingTime(startTime);
     if (remainingTime > 0) {
