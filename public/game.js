@@ -1,13 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const wordInput = document.getElementById("word-input");
-  const wordForm = document.getElementById("word-form");
+  const timerDisplay = document.getElementById("timer");
+  const wordDisplay = document.getElementById("word-display");
+  const userInput = document.getElementById("user-input");
   const roundsLeftDisplay = document.getElementById("rounds-left");
-  const messageDisplay = document.getElementById("message");
-
   let words = [];
+  let currentWordIndex = 0;
   let roundsLeft = getRoundsLeft();
+  let countdown;
 
-  // Load words from the server
+  // Fetch the words from your CSV file
   fetch("/words")
     .then((response) => response.text())
     .then((data) => {
@@ -15,44 +16,82 @@ document.addEventListener("DOMContentLoaded", () => {
         .split("\n")
         .map((word) => word.trim())
         .filter((word) => word.length);
-      console.log(words); // Debugging: log words to console
+      startNewRound(); // Start the game with the first word
     });
 
-  wordForm.addEventListener("submit", (event) => {
-    event.preventDefault();
+  // Simulates submitting a word by pressing the submit button or pressing enter
+  document
+    .getElementById("user-input")
+    .addEventListener("keypress", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        submitWord();
+      }
+    });
 
-    const submittedWord = wordInput.value.trim().toLowerCase();
-    if (words.includes(submittedWord)) {
-      messageDisplay.textContent = "Correct!";
-      decrementRoundsLeft();
+  function startNewRound() {
+    if (roundsLeft > 0) {
+      wordDisplay.textContent = words[currentWordIndex]; // Display the current word
+      resetTimer(); // Reset and start the timer for the new round
     } else {
-      messageDisplay.textContent = "Try again!";
+      wordDisplay.textContent =
+        "No more rounds left today. Come back tomorrow!";
     }
+  }
 
-    wordInput.value = ""; // Clear input field
+  function submitWord() {
+    if (
+      userInput.value.trim().toLowerCase() ===
+      wordDisplay.textContent.toLowerCase()
+    ) {
+      alert("Correct!"); // For demonstration, replace with a more suitable notification
+      decrementRoundsLeft();
+      currentWordIndex = (currentWordIndex + 1) % words.length; // Loop through words
+      userInput.value = ""; // Clear input field
+      startNewRound(); // Start next round
+    } else {
+      alert("Try again!");
+    }
+  }
+
+  window.submitWord = submitWord; // Make the function accessible from HTML's onclick attribute
+
+  function decrementRoundsLeft() {
+    roundsLeft--;
+    const today = new Date().toISOString().split("T")[0];
+    localStorage.setItem(today, roundsLeft.toString());
     updateRoundsLeftDisplay();
-  });
+  }
 
   function getRoundsLeft() {
     const today = new Date().toISOString().split("T")[0];
-    return parseInt(localStorage.getItem(today) || "10", 10);
-  }
-
-  function decrementRoundsLeft() {
-    roundsLeft = Math.max(0, roundsLeft - 1);
-    const today = new Date().toISOString().split("T")[0];
-    localStorage.setItem(today, roundsLeft.toString());
+    let storedRounds = localStorage.getItem(today);
+    if (storedRounds === null) {
+      localStorage.setItem(today, "10");
+      storedRounds = "10";
+    }
+    return parseInt(storedRounds, 10);
   }
 
   function updateRoundsLeftDisplay() {
     roundsLeftDisplay.textContent = roundsLeft.toString();
-    if (roundsLeft === 0) {
-      messageDisplay.textContent =
-        "No more rounds left today. Come back tomorrow!";
-      wordInput.disabled = true; // Disable input if no rounds left
-    }
   }
 
-  // Initialize display
-  updateRoundsLeftDisplay();
+  function resetTimer() {
+    clearInterval(countdown);
+    let time = 60; // Timer set for 60 seconds
+    timerDisplay.textContent = time;
+    countdown = setInterval(() => {
+      time--;
+      timerDisplay.textContent = time;
+      if (time <= 0) {
+        clearInterval(countdown);
+        alert("Time's up! Moving to next word."); // For demonstration, replace with a more suitable notification
+        currentWordIndex = (currentWordIndex + 1) % words.length; // Move to next word
+        startNewRound();
+      }
+    }, 1000);
+  }
+
+  updateRoundsLeftDisplay(); // Initial display update
 });
