@@ -98,14 +98,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function endGame() {
-    alert(`Time's up! You found ${correctWordsCount} correct words.`);
+    alert(`Umwanya uraheze! Watoye amajambo ${correctWordsCount} yihishije.`);
     userInput.disabled = true; // Disable further input
     gameHasEndedToday = true;
     wordDisplay.textContent = "--------"; // Clear the word display
 
     // Update the results display
     const resultsDisplay = document.getElementById("results");
-    resultsDisplay.textContent = `Today ${today}, you have found ${correctWordsCount} correct words.`;
+    resultsDisplay.textContent = `Ino munsi ${today}, watoye amajambo ${correctWordsCount} yihishije.`;
 
     storeResultsInLocalStorage();
   }
