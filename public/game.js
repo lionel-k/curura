@@ -98,14 +98,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function endGame() {
-    alert(`Umwanya waheze! Watoye amajambo ${correctWordsCount} yihishije.`);
+    alert(`Umwanya waheze! Watoye amajambo ${correctWordsCount} yinyegeje.`);
     userInput.disabled = true; // Disable further input
     gameHasEndedToday = true;
     wordDisplay.textContent = "--------"; // Clear the word display
 
     // Update the results display
     const resultsDisplay = document.getElementById("results");
-    resultsDisplay.textContent = `Ino munsi ${today}, watoye amajambo ${correctWordsCount} yihishije. Uragaruka ejo gukina kandi.`;
+    resultsDisplay.textContent = `Ino munsi ${today}, watoye amajambo ${correctWordsCount} yinyegeje. Uragaruka ejo gukina kandi.`;
 
     storeResultsInLocalStorage();
   }
