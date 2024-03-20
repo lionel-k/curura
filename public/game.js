@@ -152,4 +152,10 @@ document.addEventListener("DOMContentLoaded", () => {
       submitWord();
     }
   });
+
+  document
+    .getElementById("submit-button")
+    .addEventListener("click", function () {
+      submitWord();
+    });
 });
