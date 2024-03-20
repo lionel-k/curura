@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentWordIndex = 0;
   let roundsLeft = getRoundsLeft();
   let countdown;
+  let currentUnshuffledWord = ""; // Store the current unshuffled word
 
   // Fetch the words from your CSV file
   fetch("/words")
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
       startNewRound(); // Start the game with the first word
     });
 
-  // Simulates submitting a word by pressing the submit button or pressing enter
+  // Listen for the Enter key to submit a word
   document
     .getElementById("user-input")
     .addEventListener("keypress", function (event) {
@@ -28,16 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
         submitWord();
       }
     });
-
-  // function startNewRound() {
-  //   if (roundsLeft > 0) {
-  //     wordDisplay.textContent = words[currentWordIndex]; // Display the current word
-  //     resetTimer(); // Reset and start the timer for the new round
-  //   } else {
-  //     wordDisplay.textContent =
-  //       "No more rounds left today. Come back tomorrow!";
-  //   }
-  // }
 
   function shuffleWord(word) {
     const letters = word.split("");
@@ -50,7 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function startNewRound() {
     if (roundsLeft > 0) {
-      const shuffledWord = shuffleWord(words[currentWordIndex]);
+      currentUnshuffledWord = words[currentWordIndex]; // Update the current unshuffled word
+      const shuffledWord = shuffleWord(currentUnshuffledWord);
       wordDisplay.textContent = shuffledWord; // Display the shuffled word
       resetTimer(); // Reset and start the timer for the new round
     } else {
@@ -62,13 +54,13 @@ document.addEventListener("DOMContentLoaded", () => {
   function submitWord() {
     if (
       userInput.value.trim().toLowerCase() ===
-      wordDisplay.textContent.toLowerCase()
+      currentUnshuffledWord.toLowerCase()
     ) {
       alert("Correct!"); // For demonstration, replace with a more suitable notification
       decrementRoundsLeft();
       currentWordIndex = (currentWordIndex + 1) % words.length; // Loop through words
       userInput.value = ""; // Clear input field
-      startNewRound(); // Start next round
+      startNewRound(); // Start the next round
     } else {
       alert("Try again!");
     }
