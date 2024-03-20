@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function endGame() {
-    alert(`Umwanya uraheze! Watoye amajambo ${correctWordsCount} yihishije.`);
+    alert(`Umwanya waheze! Watoye amajambo ${correctWordsCount} yihishije.`);
     userInput.disabled = true; // Disable further input
     gameHasEndedToday = true;
     wordDisplay.textContent = "--------"; // Clear the word display
