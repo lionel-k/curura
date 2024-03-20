@@ -4,8 +4,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const userInput = document.getElementById("user-input");
   let words = [];
   let currentWordIndex = 0;
-  let correctWordsCount = 0;
+  let correctWordsCount = getTodayCorrectWordsCount(); // Get today's correct words count if available
   let countdown;
+
+  function getTodayCorrectWordsCount() {
+    const today = new Date().toISOString().split("T")[0];
+    return parseInt(
+      localStorage.getItem(`correctWordsCount_${today}`) || "0",
+      10
+    );
+  }
 
   function hasGameStartedToday() {
     const today = new Date().toISOString().split("T")[0];
@@ -74,15 +82,17 @@ document.addEventListener("DOMContentLoaded", () => {
   function endGame() {
     alert(`Time's up! You found ${correctWordsCount} correct words.`);
     userInput.disabled = true; // Disable further input
-    storeResultsInLocalStorage(correctWordsCount);
+    storeResultsInLocalStorage();
   }
 
-  function storeResultsInLocalStorage(correctCount) {
+  function storeResultsInLocalStorage() {
     const today = new Date().toISOString().split("T")[0];
-    localStorage.setItem(`correctWordsCount_${today}`, correctCount.toString());
+    localStorage.setItem(
+      `correctWordsCount_${today}`,
+      correctWordsCount.toString()
+    );
   }
 
-  // Set up the game
   const startTime = hasGameStartedToday();
   if (!startTime) {
     const now = new Date();
@@ -97,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Fetch and display words
   fetch("/words")
     .then((response) => response.text())
     .then((data) => {
@@ -108,7 +117,6 @@ document.addEventListener("DOMContentLoaded", () => {
       displayNextWord(); // Immediately display the first word
     });
 
-  // Listen for the Enter key to submit a word
   userInput.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
       event.preventDefault();
