@@ -86,3 +86,21 @@ button:hover {
   font-size: 2rem; /* Adjust based on your design */
   margin: 5px 0;
 }
+
+button {
+  font-size: 2rem; /* Increase font size for better visibility */
+  padding: 1.5vh 20px; /* Adjust padding to ensure text is well-spaced and the button is easy to tap */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: auto; /* Adjust width as necessary, or keep it auto for content-based sizing */
+  max-width: 300px; /* Keep or adjust the max-width as per your design requirements */
+  margin: 20px 0; /* Add some margin to ensure space around the button */
+}
+
+button:hover {
+  background-color: #0056b3;
+}
