@@ -56,10 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const currentWord = words[currentWordIndex];
     if (userInput.value.trim().toLowerCase() === currentWord.toLowerCase()) {
       correctWordsCount++;
-      alert("Correct!");
       moveToNextWord();
-    } else {
-      alert("Try again!");
     }
     userInput.value = ""; // Clear input field after each submission
   }
@@ -87,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Update the results display
     const resultsDisplay = document.getElementById("results");
-    resultsDisplay.textContent = `Today ${today}, you have found: ${correctWordsCount} correct words.`;
+    resultsDisplay.textContent = `Today ${today}, you have found ${correctWordsCount} correct words.`;
 
     storeResultsInLocalStorage();
   }
