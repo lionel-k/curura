@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function displayNextWord() {
     const currentWord = words[currentWordIndex];
+    console.log(currentWord);
     const shuffledWord = shuffleWord(currentWord);
     if (gameHasEndedToday) {
       wordDisplay.textContent = "--------";
@@ -138,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
       words = data
         .split("\n")
         .map((word) => word.trim().toUpperCase())
-        .filter((word) => word.length);
+        .filter((word) => word.length > 4 && word.length < 7);
       shuffleArray(words); // Shuffle the words array to randomize the order
 
       currentWordIndex = Math.floor(Math.random() * words.length);
