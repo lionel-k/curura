@@ -1,62 +1,58 @@
 document.addEventListener("DOMContentLoaded", () => {
-  let words = []; // This will hold the words loaded from the CSV
-  let currentWordIndex = 0;
-  let timer = 60;
-  let intervalId;
+  const wordInput = document.getElementById("word-input");
+  const wordForm = document.getElementById("word-form");
+  const roundsLeftDisplay = document.getElementById("rounds-left");
+  const messageDisplay = document.getElementById("message");
 
-  function loadWords() {
-    // Example loading words from a static file. Adapt as necessary for your setup.
-    fetch("/words.csv")
-      .then((response) => response.text())
-      .then((text) => {
-        words = text
-          .split("\n")
-          .map((line) => line.trim())
-          .filter((line) => line.length);
-        displayWord();
-        startGame();
-      });
-  }
+  let words = [];
+  let roundsLeft = getRoundsLeft();
 
-  function startGame() {
-    document.getElementById("user-input").value = ""; // Reset input field
-    document.getElementById("user-input").focus(); // Focus on input field
+  // Load words from the server
+  fetch("/words")
+    .then((response) => response.text())
+    .then((data) => {
+      words = data
+        .split("\n")
+        .map((word) => word.trim())
+        .filter((word) => word.length);
+      console.log(words); // Debugging: log words to console
+    });
 
-    intervalId = setInterval(() => {
-      timer--;
-      document.getElementById("timer").textContent = timer;
-      if (timer <= 0) {
-        clearInterval(intervalId);
-        alert("Time is up! Game over.");
-        // Here, you would also handle the end of the game, such as resetting for the next word or handling the daily limit.
-      }
-    }, 1000);
-  }
+  wordForm.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-  function displayWord() {
-    if (currentWordIndex < words.length) {
-      document.getElementById("word-display").textContent =
-        words[currentWordIndex];
+    const submittedWord = wordInput.value.trim().toLowerCase();
+    if (words.includes(submittedWord)) {
+      messageDisplay.textContent = "Correct!";
+      decrementRoundsLeft();
     } else {
-      alert("No more words left for today!");
-      // Reset or disable game here
+      messageDisplay.textContent = "Try again!";
+    }
+
+    wordInput.value = ""; // Clear input field
+    updateRoundsLeftDisplay();
+  });
+
+  function getRoundsLeft() {
+    const today = new Date().toISOString().split("T")[0];
+    return parseInt(localStorage.getItem(today) || "10", 10);
+  }
+
+  function decrementRoundsLeft() {
+    roundsLeft = Math.max(0, roundsLeft - 1);
+    const today = new Date().toISOString().split("T")[0];
+    localStorage.setItem(today, roundsLeft.toString());
+  }
+
+  function updateRoundsLeftDisplay() {
+    roundsLeftDisplay.textContent = roundsLeft.toString();
+    if (roundsLeft === 0) {
+      messageDisplay.textContent =
+        "No more rounds left today. Come back tomorrow!";
+      wordInput.disabled = true; // Disable input if no rounds left
     }
   }
 
-  function submitWord() {
-    const userInput = document.getElementById("user-input").value;
-    if (userInput === words[currentWordIndex]) {
-      alert("Correct! Onto the next word.");
-      currentWordIndex++;
-      timer = 60; // Reset timer for the next word
-      displayWord();
-      startGame();
-    } else {
-      alert("Try again!");
-    }
-  }
-
-  window.submitWord = submitWord; // Make the submitWord function accessible from HTML
-
-  loadWords();
+  // Initialize display
+  updateRoundsLeftDisplay();
 });
