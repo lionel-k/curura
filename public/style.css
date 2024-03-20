@@ -18,6 +18,10 @@ html {
   margin-bottom: 20px;
 }
 
+#results {
+  margin-top: 20px;
+}
+
 #word-display {
   font-size: 24px;
   margin-bottom: 10px;
