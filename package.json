@@ -1,0 +1,23 @@
+{
+  "devDependencies": {
+    "@prettier/plugin-ruby": "^1.6.1",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.7",
+    "prettier": "^2.2.1",
+    "prettier-plugin-erb": "^0.4.0"
+  },
+  "name": "plugin-crafter",
+  "description": "ChatGPT plugins",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lionel-k/plugin-crafter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lionel-k/plugin-crafter/issues"
+  },
+  "homepage": "https://github.com/lionel-k/plugin-crafter#readme"
+}
