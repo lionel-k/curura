@@ -2,12 +2,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const timerDisplay = document.getElementById("timer");
   const wordDisplay = document.getElementById("word-display");
   const userInput = document.getElementById("user-input");
-  const roundsLeftDisplay = document.getElementById("rounds-left");
   let words = [];
   let currentWordIndex = 0;
-  let roundsLeft = getRoundsLeft();
+  let correctWordsCount = 0;
   let countdown;
-  let currentUnshuffledWord = ""; // Store the current unshuffled word
 
   // Fetch the words from your CSV file
   fetch("/words")
@@ -17,18 +15,17 @@ document.addEventListener("DOMContentLoaded", () => {
         .split("\n")
         .map((word) => word.trim())
         .filter((word) => word.length);
-      startNewRound(); // Start the game with the first word
+      shuffleWordsArray(words); // Shuffle the words array to randomize the order
+      displayNextWord(); // Display the first word immediately
+      startTimer(60); // Start the timer automatically
     });
 
-  // Listen for the Enter key to submit a word
-  document
-    .getElementById("user-input")
-    .addEventListener("keypress", function (event) {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        submitWord();
-      }
-    });
+  function shuffleWordsArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
 
   function shuffleWord(word) {
     const letters = word.split("");
@@ -39,71 +36,58 @@ document.addEventListener("DOMContentLoaded", () => {
     return letters.join("");
   }
 
-  function startNewRound() {
-    if (roundsLeft > 0) {
-      currentUnshuffledWord = words[currentWordIndex]; // Update the current unshuffled word
-      const shuffledWord = shuffleWord(currentUnshuffledWord);
-      wordDisplay.textContent = shuffledWord; // Display the shuffled word
-      resetTimer(); // Reset and start the timer for the new round
-    } else {
-      wordDisplay.textContent =
-        "No more rounds left today. Come back tomorrow!";
+  // Listen for the Enter key to submit a word
+  userInput.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      submitWord();
     }
-  }
+  });
 
   function submitWord() {
-    if (
-      userInput.value.trim().toLowerCase() ===
-      currentUnshuffledWord.toLowerCase()
-    ) {
+    const currentWord = words[currentWordIndex];
+    if (userInput.value.trim().toLowerCase() === currentWord.toLowerCase()) {
+      correctWordsCount++;
       alert("Correct!"); // For demonstration, replace with a more suitable notification
-      decrementRoundsLeft();
-      currentWordIndex = (currentWordIndex + 1) % words.length; // Loop through words
-      userInput.value = ""; // Clear input field
-      startNewRound(); // Start the next round
+      moveToNextWord();
     } else {
       alert("Try again!");
     }
+    userInput.value = ""; // Clear input field
   }
 
-  window.submitWord = submitWord; // Make the function accessible from HTML's onclick attribute
-
-  function decrementRoundsLeft() {
-    roundsLeft--;
-    const today = new Date().toISOString().split("T")[0];
-    localStorage.setItem(today, roundsLeft.toString());
-    updateRoundsLeftDisplay();
+  function displayNextWord() {
+    const shuffledWord = shuffleWord(words[currentWordIndex]);
+    wordDisplay.textContent = shuffledWord; // Display the shuffled word
   }
 
-  function getRoundsLeft() {
-    const today = new Date().toISOString().split("T")[0];
-    let storedRounds = localStorage.getItem(today);
-    if (storedRounds === null) {
-      localStorage.setItem(today, "10");
-      storedRounds = "10";
-    }
-    return parseInt(storedRounds, 10);
+  function moveToNextWord() {
+    currentWordIndex = (currentWordIndex + 1) % words.length;
+    displayNextWord();
   }
 
-  function updateRoundsLeftDisplay() {
-    roundsLeftDisplay.textContent = roundsLeft.toString();
-  }
-
-  function resetTimer() {
-    clearInterval(countdown);
-    let time = 60; // Timer set for 60 seconds
+  function startTimer(duration) {
+    let time = duration;
     timerDisplay.textContent = time;
+    clearInterval(countdown);
     countdown = setInterval(() => {
       time--;
       timerDisplay.textContent = time;
       if (time <= 0) {
         clearInterval(countdown);
-        alert("Time's up! Moving to next word."); // For demonstration, replace with a more suitable notification
-        currentWordIndex = (currentWordIndex + 1) % words.length; // Move to next word
-        startNewRound();
+        endGame();
       }
     }, 1000);
   }
 
-  updateRoundsLeftDisplay(); // Initial display update
+  function endGame() {
+    alert(`Time's up! You found ${correctWordsCount} correct words.`);
+    storeResultsInLocalStorage(correctWordsCount);
+    userInput.disabled = true; // Disable input at the end of the game
+  }
+
+  function storeResultsInLocalStorage(correctCount) {
+    const today = new Date().toISOString().split("T")[0];
+    localStorage.setItem(`correctWords_${today}`, correctCount);
+  }
 });
