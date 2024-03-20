@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const userInput = document.getElementById("user-input");
   let words = [];
   let currentWordIndex = 0;
+
   let correctWordsCount = getTodayCorrectWordsCount(); // Get today's correct words count if available
   let countdown;
   let gameDuration = 10;
@@ -66,6 +67,13 @@ document.addEventListener("DOMContentLoaded", () => {
     displayNextWord();
   }
 
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
+  }
+
   function startTimer(remainingTime) {
     timerDisplay.textContent = remainingTime;
     countdown = setInterval(() => {
@@ -118,7 +126,12 @@ document.addEventListener("DOMContentLoaded", () => {
         .split("\n")
         .map((word) => word.trim())
         .filter((word) => word.length);
-      displayNextWord(); // Immediately display the first word
+      shuffleArray(words); // Shuffle the words array to randomize the order
+
+      // After shuffling, you can optionally set a random starting index if desired
+      currentWordIndex = Math.floor(Math.random() * words.length);
+
+      displayNextWord(); // Display the first word (now random due to shuffling and random index)
     });
 
   userInput.addEventListener("keypress", function (event) {
