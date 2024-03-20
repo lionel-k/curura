@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((data) => {
       words = data
         .split("\n")
-        .map((word) => word.trim())
+        .map((word) => word.trim().toUpperCase())
         .filter((word) => word.length);
       shuffleArray(words); // Shuffle the words array to randomize the order
 
