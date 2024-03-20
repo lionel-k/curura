@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Update the results display
     const resultsDisplay = document.getElementById("results");
-    resultsDisplay.textContent = `Ino munsi ${today}, watoye amajambo ${correctWordsCount} yihishije.`;
+    resultsDisplay.textContent = `Ino munsi ${today}, watoye amajambo ${correctWordsCount} yihishije. Uragaruka ejo gukina kandi.`;
 
     storeResultsInLocalStorage();
   }
