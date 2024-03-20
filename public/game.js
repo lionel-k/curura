@@ -29,9 +29,29 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+  // function startNewRound() {
+  //   if (roundsLeft > 0) {
+  //     wordDisplay.textContent = words[currentWordIndex]; // Display the current word
+  //     resetTimer(); // Reset and start the timer for the new round
+  //   } else {
+  //     wordDisplay.textContent =
+  //       "No more rounds left today. Come back tomorrow!";
+  //   }
+  // }
+
+  function shuffleWord(word) {
+    const letters = word.split("");
+    for (let i = letters.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [letters[i], letters[j]] = [letters[j], letters[i]]; // Swap letters
+    }
+    return letters.join("");
+  }
+
   function startNewRound() {
     if (roundsLeft > 0) {
-      wordDisplay.textContent = words[currentWordIndex]; // Display the current word
+      const shuffledWord = shuffleWord(words[currentWordIndex]);
+      wordDisplay.textContent = shuffledWord; // Display the shuffled word
       resetTimer(); // Reset and start the timer for the new round
     } else {
       wordDisplay.textContent =
