@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const userInput = document.getElementById("user-input");
   let words = [];
   let currentWordIndex = 0;
-
   let correctWordsCount = getTodayCorrectWordsCount(); // Get today's correct words count if available
   let countdown;
   let gameDuration = 10;
