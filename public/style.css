@@ -34,10 +34,10 @@ html {
 }
 
 #user-input {
-  font-size: 1.5rem; /* Increase font size for easier interaction on mobile */
-  padding: 1.5vh 20px; /* Increase vertical padding */
+  font-size: 2rem; /* Updated font size for better proportionality */
+  padding: 2vh 20px; /* Slightly increased vertical padding for better balance */
   width: calc(100% - 40px); /* Ensure input does not exceed screen width */
-  margin: 2vh 0 4vh; /* Increase margin to add space around the input field */
+  margin: 2vh 0 4vh; /* Maintain margin to add space around the input field */
   border: 2px solid #007bff;
   border-radius: 8px;
 }
