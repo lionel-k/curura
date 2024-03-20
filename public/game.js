@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
       wordDisplay.textContent = "--------";
       return;
     }
-    wordDisplay.textContent = shuffledWord;
+    wordDisplay.textContent = shuffledWord.split("").join(" ");
   }
 
   function submitWord() {
