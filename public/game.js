@@ -83,6 +83,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function endGame() {
     alert(`Time's up! You found ${correctWordsCount} correct words.`);
     userInput.disabled = true; // Disable further input
+
+    // Update the results display
+    const resultsDisplay = document.getElementById("results");
+    resultsDisplay.textContent = `Today you have found: ${correctWordsCount} correct words.`;
+
     storeResultsInLocalStorage();
   }
 
