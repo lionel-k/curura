@@ -3,12 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Kirundi Word Puzzle Game</title>
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="game-container">
-    <!-- Game content and controls -->
+    <div id="timer">60</div>
+    <div id="word-display"></div>
+    <input type="text" id="user-input" />
+    <button onclick="submitWord()">Submit</button>
+    <div id="daily-limit">Rounds Left: <span id="rounds-left">10</span></div>
   </div>
-  <script src="/game.js"></script>
+  <script src="game.js"></script>
 </body>
 </html>
