@@ -2,7 +2,9 @@ body,
 html {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #f0f4f8;
+  color: #333;
 }
 
 #game-container {
@@ -10,59 +12,61 @@ html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-#timer {
-  font-size: 24px;
+#timer,
+#word-display,
+#results {
+  font-size: 2rem; /* 32px */
   margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 600px; /* Ensures content is not too wide on larger screens */
+}
+
+#word-display {
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#user-input {
+  font-size: 1.25rem; /* 20px */
+  padding: 10px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 600px; /* Ensures the input field is not too wide */
+  border: 2px solid #007bff;
+  border-radius: 5px;
+}
+
+button {
+  font-size: 1.25rem; /* 20px */
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
 
 #results {
-  margin-top: 20px;
+  font-size: 1.5rem; /* 24px */
+  color: #007bff;
 }
 
-#word-display {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-#user-input {
-  margin-bottom: 10px;
-}
-
-#daily-limit {
-  margin-top: 20px;
-}
-body,
-html {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
-#game-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-#timer {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-#word-display {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
-
-#user-input {
-  margin-bottom: 10px;
-}
-
-#daily-limit {
-  margin-top: 20px;
+@media (max-width: 768px) {
+  #timer,
+  #word-display,
+  #results {
+    font-size: 1.75rem; /* Adjusts font size for smaller devices */
+  }
 }
