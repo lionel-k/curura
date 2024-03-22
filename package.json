@@ -6,18 +6,18 @@
     "prettier": "^2.2.1",
     "prettier-plugin-erb": "^0.4.0"
   },
-  "name": "plugin-crafter",
-  "description": "ChatGPT plugins",
+  "name": "curura",
+  "description": "Kirundi Word Scramble Game",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lionel-k/plugin-crafter.git"
+    "url": "git+https://github.com/lionel-k/curura.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lionel-k/plugin-crafter/issues"
+    "url": "https://github.com/lionel-k/curura/issues"
   },
-  "homepage": "https://github.com/lionel-k/plugin-crafter#readme"
+  "homepage": "https://github.com/lionel-k/curura#readme"
 }
