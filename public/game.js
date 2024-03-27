@@ -124,6 +124,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
   }
 
+  const haveAGoodDay = () => {
+    const greetings = [
+      "Umunsi mwiza",
+      "Umuhingamo mwiza",
+      "Umugoroba mwiza",
+      "Ijoro ryiza",
+    ];
+
+    const now = new Date();
+    const hour = now.getHours();
+    let greeting = greetings[0];
+
+    if (hour >= 12 && hour < 18) {
+      greeting = greetings[1];
+    }
+
+    if (hour >= 18 && hour < 21) {
+      greeting = greetings[2];
+    }
+
+    if (hour >= 21 || hour < 6) {
+      greeting = greetings[3];
+    }
+
+    console.log(greeting);
+
+    return greeting;
+  };
+
   function endGame() {
     let correctWordsText =
       correctWordsCount === 1
@@ -136,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
     wordDisplay.textContent = "--------"; // Clear the word display
 
     const resultsDisplay = document.getElementById("results");
-    resultsDisplay.textContent = `${correctWordsText} uno musi. Uragaruka ejo gukina kandi.`;
+    resultsDisplay.textContent = `${correctWordsText} uno musi. Uragaruka ejo gukina kandi. ${haveAGoodDay()}!`;
 
     storeResultsInLocalStorage();
   }
