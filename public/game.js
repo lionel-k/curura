@@ -7,8 +7,32 @@ document.addEventListener("DOMContentLoaded", () => {
   let correctWordsCount = getTodayCorrectWordsCount(); // Get today's correct words count if available
   let countdown;
   let gameDuration = 30;
-  const today = new Date().toISOString().split("T")[0];
+  const today = new Date();
   let gameHasEndedToday = false;
+
+  const MONTHS = [
+    "Nzero",
+    "Ruhuhuma",
+    "Ntwarante",
+    "Ndamukiza",
+    "Rusama",
+    "Ruheshi",
+    "Mukakaro",
+    "Myandagaro",
+    "Nyakanga",
+    "Gitugutu",
+    "Munyonyo",
+    "Kigarama",
+  ];
+
+  const getKirundiDate = () => {
+    const day = today.getDate();
+    const month = MONTHS[today.getMonth()];
+    const year = today.getFullYear();
+    return `${day} ${month} ${year}`;
+  };
+
+  const todayInKirundi = getKirundiDate();
 
   function getTodayCorrectWordsCount() {
     const today = new Date().toISOString().split("T")[0];
@@ -109,9 +133,8 @@ document.addEventListener("DOMContentLoaded", () => {
     gameHasEndedToday = true;
     wordDisplay.textContent = "--------"; // Clear the word display
 
-    // Update the results display
     const resultsDisplay = document.getElementById("results");
-    resultsDisplay.textContent = `Uno musi ${today}, wacuruye amajambo ${correctWordsCount} yinyegeje. Uragaruka ejo gukina kandi.`;
+    resultsDisplay.textContent = `Uno musi ${todayInKirundi}, wacuruye amajambo ${correctWordsCount} yinyegeje. Uragaruka ejo gukina kandi.`;
 
     storeResultsInLocalStorage();
   }
