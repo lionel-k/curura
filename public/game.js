@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .split("\n")
         .map((word) => word.trim().toUpperCase())
         .filter((word) => word.length > 4 && word.length < 7);
-      shuffleArray(words); // Shuffle the words array to randomize the order
+      shuffleArray(words);
 
       currentWordIndex = Math.floor(Math.random() * words.length);
 
