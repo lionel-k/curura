@@ -125,18 +125,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function endGame() {
-    let message =
+    let correctWordsText =
       correctWordsCount === 1
-        ? "Umwanya waheze! Wacuruye ijambo rimwe ryinyegeje."
-        : `Umwanya waheze! Wacuruye amajambo ${correctWordsCount} yinyegeje.`;
+        ? "Wacuruye ijambo rimwe ryinyegeje"
+        : `Wacuruye amajambo ${correctWordsCount} yinyegeje`;
 
-    alert(message);
+    alert(`Umwanya waheze! ${correctWordsText}.`);
     userInput.disabled = true; // Disable further input
     gameHasEndedToday = true;
     wordDisplay.textContent = "--------"; // Clear the word display
 
     const resultsDisplay = document.getElementById("results");
-    resultsDisplay.textContent = `Uno musi ${todayInKirundi}, wacuruye amajambo ${correctWordsCount} yinyegeje. Uragaruka ejo gukina kandi.`;
+    resultsDisplay.textContent = `${correctWordsText} uno musi. Uragaruka ejo gukina kandi.`;
 
     storeResultsInLocalStorage();
   }
