@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const timerDisplay = document.getElementById("timer");
   const wordDisplay = document.getElementById("word-display");
   const userInput = document.getElementById("user-input");
+  const todayDisplay = document.getElementById("today");
   let words = [];
   let currentWordIndex = 0;
   let correctWordsCount = getTodayCorrectWordsCount(); // Get today's correct words count if available
@@ -33,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const todayInKirundi = getKirundiDate();
+  todayDisplay.textContent = todayInKirundi;
 
   function getTodayCorrectWordsCount() {
     const today = new Date().toISOString().split("T")[0];
