@@ -132,8 +132,7 @@ document.addEventListener("DOMContentLoaded", () => {
       "Ijoro ryiza",
     ];
 
-    const now = new Date();
-    const hour = now.getHours();
+    const hour = new Date().getHours();
     let greeting = greetings[0];
 
     if (hour >= 12 && hour < 18) {
