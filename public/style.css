@@ -23,8 +23,7 @@ html {
 }
 
 footer#footer {
-  background-color: #007bff; /* Blue color for footer background */
-  color: #ffffff; /* White text color */
+  color: black;
   font-size: 2.5rem; /* Increased font size */
   padding: 2rem; /* Increased padding for larger touch targets and visibility */
   text-align: center;
@@ -33,7 +32,7 @@ footer#footer {
 }
 
 footer#footer a {
-  color: #ffffff; /* Ensures the link is white */
+  color: black; /* Ensures the link is white */
   text-decoration: none; /* Removes underline from the link */
 }
 
