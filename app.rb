@@ -1,3 +1,5 @@
+#! /usr/bin/env ruby
+
 require 'sinatra'
 
 before { cache_control :no_store }
