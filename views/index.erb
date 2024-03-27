@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Curura</title>
-  <link rel="stylesheet" href="/style.css?<%= @css_version %>" type="text/css">
+  <link rel="stylesheet" href="/style.css?<%= @version %>" type="text/css">
 </head>
 <body>
   <div id="game-container">
     <div id="logo-container">
-      <img src="logos/3.png?<%=@css_version %>" alt="Logo" id="logo"> <!-- Update the src with your logo's path -->
+      <img src="logos/3.png?<%=@version %>" alt="Logo" id="logo"> <!-- Update the src with your logo's path -->
     </div>
     <div id="today"></div>
     <div id="timer">30</div>
@@ -24,6 +24,6 @@
   <footer id="footer">
     <a href="https://linktr.ee/ndakundaikirundi" target="_blank">© 2024 Ndakunda Ikirundi</a>
   </footer>
-  <script src="game.js"></script>
+  <script src="game.js?<%= @version %>"></script>
 </body>
 </html>
