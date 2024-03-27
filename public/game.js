@@ -148,8 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
       greeting = greetings[3];
     }
 
-    console.log(greeting);
-
     return greeting;
   };
 
