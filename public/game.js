@@ -168,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!shareButton) {
       shareButton = document.createElement("button");
       shareButton.id = "share-button";
-      shareButton.textContent = "Sangiza abandi";
+      shareButton.innerHTML = '<i class="fas fa-share"></i> Sangiza abandi';
       document.getElementById("game-container").appendChild(shareButton);
     }
 
