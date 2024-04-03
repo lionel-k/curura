@@ -11,6 +11,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const today = new Date();
   let gameHasEndedToday = false;
 
+  function getLocalDateISOString() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, "0"); // getMonth is zero-indexed
+    const day = now.getDate().toString().padStart(2, "0");
+
+    return `${year}-${month}-${day}`; // YYYY-MM-DD format
+  }
+
   const MONTHS = [
     "Nzero",
     "Ruhuhuma",
@@ -37,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
   todayDisplay.textContent = todayInKirundi;
 
   function getTodayCorrectWordsCount() {
-    const today = new Date().toISOString().split("T")[0];
+    const today = getLocalDateISOString();
     return parseInt(
       localStorage.getItem(`correctWordsCount_${today}`) || "0",
       10
@@ -45,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function hasGameStartedToday() {
-    const today = new Date().toISOString().split("T")[0];
+    const today = getLocalDateISOString();
     const startTime = localStorage.getItem(`gameStartTime_${today}`);
     if (startTime) {
       return new Date(startTime);
@@ -54,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function saveGameStartTime(startTime) {
-    const today = new Date().toISOString().split("T")[0];
+    const today = getLocalDateISOString();
     localStorage.setItem(`gameStartTime_${today}`, startTime.toISOString());
   }
 
@@ -189,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function storeResultsInLocalStorage() {
-    const today = new Date().toISOString().split("T")[0];
+    const today = getLocalDateISOString();
     localStorage.setItem(
       `correctWordsCount_${today}`,
       correctWordsCount.toString()
