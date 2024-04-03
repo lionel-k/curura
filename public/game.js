@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentWordIndex = 0;
   let correctWordsCount = getTodayCorrectWordsCount(); // Get today's correct words count if available
   let countdown;
-  let gameDuration = 30;
+  let gameDuration = 60;
   const today = new Date();
   let gameHasEndedToday = false;
 
