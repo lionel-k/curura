@@ -164,6 +164,26 @@ document.addEventListener("DOMContentLoaded", () => {
     const resultsDisplay = document.getElementById("results");
     resultsDisplay.textContent = `${correctWordsText} uno musi. Uragaruka ejo gukina kandi. ${haveAGoodDay()}!`;
 
+    let shareButton = document.getElementById("share-button");
+    if (!shareButton) {
+      shareButton = document.createElement("button");
+      shareButton.id = "share-button";
+      shareButton.textContent = "Sangiza abandi";
+      document.getElementById("game-container").appendChild(shareButton);
+    }
+
+    shareButton.addEventListener("click", () => {
+      const shareMessage = `Uno musi ${todayInKirundi},\n\nNacuruye amajambo ${correctWordsCount}. \n\nhttps://curura.bi`;
+      navigator.clipboard.writeText(shareMessage).then(
+        () => {
+          alert("Urukino rwakoporowe!");
+        },
+        (err) => {
+          console.error("Could not copy text: ", err);
+        }
+      );
+    });
+
     storeResultsInLocalStorage();
   }
 
