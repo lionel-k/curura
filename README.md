@@ -1,6 +1,6 @@
 # curura
 
-old name servers
+To launch the app locally,
 
-ns3.afriregister.com
-ns9.afriregister.co.ke
+1. Clone the repository
+2.
