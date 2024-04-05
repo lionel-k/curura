@@ -124,11 +124,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function startTimer(remainingTime) {
+  function startTimer(duration) {
+    let remainingTime = duration;
+    const totalDuration = duration; // Store the total duration for percentage calculation
     timerDisplay.textContent = remainingTime;
+    timerDisplay.style.color = "green"; // Start with green color
+
     countdown = setInterval(() => {
       remainingTime--;
-      timerDisplay.textContent = remainingTime;
+      const percentage = (remainingTime / totalDuration) * 100;
+
+      if (percentage <= 25) {
+        timerDisplay.style.color = "red";
+        timerDisplay.classList.add("blink");
+      } else if (percentage <= 50) {
+        timerDisplay.style.color = "orange";
+        timerDisplay.classList.remove("blink");
+      } else {
+        timerDisplay.style.color = "green";
+        timerDisplay.classList.remove("blink");
+      }
+
+      const minutes = Math.floor(remainingTime / 60);
+      const seconds = remainingTime % 60;
+      timerDisplay.textContent = `${minutes}:${seconds
+        .toString()
+        .padStart(2, "0")}`;
+
       if (remainingTime <= 0) {
         clearInterval(countdown);
         endGame();
