@@ -185,16 +185,42 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("game-container").appendChild(shareButton);
     }
 
+    // shareButton.addEventListener("click", () => {
+    //   const shareMessage = `Uno musi ${todayInKirundi},\n\nNacuruye amajambo ${correctWordsCount}. \n\nhttps://curura.bi`;
+    //   navigator.clipboard.writeText(shareMessage).then(
+    //     () => {
+    //       alert("Urukino rwakoporowe!");
+    //     },
+    //     (err) => {
+    //       console.error("Could not copy text: ", err);
+    //     }
+    //   );
+    // });
+
     shareButton.addEventListener("click", () => {
       const shareMessage = `Uno musi ${todayInKirundi},\n\nNacuruye amajambo ${correctWordsCount}. \n\nhttps://curura.bi`;
-      navigator.clipboard.writeText(shareMessage).then(
-        () => {
-          alert("Urukino rwakoporowe!");
-        },
-        (err) => {
-          console.error("Could not copy text: ", err);
-        }
-      );
+
+      // Use the Web Share API if it is available
+      if (navigator.share) {
+        navigator
+          .share({
+            title: "Curura",
+            text: shareMessage,
+            url: "https://curura.bi", // This is your game's URL
+          })
+          .then(() => console.log("Successful share"))
+          .catch((error) => console.log("Error sharing", error));
+      } else {
+        // Fallback to copying the message to the clipboard
+        navigator.clipboard.writeText(shareMessage).then(
+          () => {
+            alert("Urukino rwakoporowe!"); // "The game was copied!"
+          },
+          (err) => {
+            console.error("Could not copy text: ", err);
+          }
+        );
+      }
     });
 
     storeResultsInLocalStorage();
