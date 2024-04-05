@@ -211,6 +211,32 @@ document.addEventListener("DOMContentLoaded", () => {
     storeResultsInLocalStorage();
   }
 
+  function updateCountdown() {
+    const now = new Date();
+    const midnight = new Date(now);
+    midnight.setHours(24, 0, 0, 0); // Set to next midnight.
+
+    const secondsUntilMidnight = (midnight - now) / 1000;
+    const hours = String(Math.floor(secondsUntilMidnight / 3600)).padStart(
+      2,
+      "0"
+    );
+    const minutes = String(Math.floor(secondsUntilMidnight / 60) % 60).padStart(
+      2,
+      "0"
+    );
+    const seconds = String(Math.floor(secondsUntilMidnight) % 60).padStart(
+      2,
+      "0"
+    );
+
+    const countdownTimer = document.getElementById("time-remaining");
+    countdownTimer.textContent = `${hours}:${minutes}:${seconds}`;
+  }
+
+  // Update the countdown every second
+  setInterval(updateCountdown, 1000);
+
   function storeResultsInLocalStorage() {
     const today = getLocalDateISOString();
     localStorage.setItem(
