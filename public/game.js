@@ -103,8 +103,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const listItem = document.createElement("li");
       listItem.textContent = currentWord; // Or use userInput.value for the user's input
       correctWordsList.appendChild(listItem);
+      window.navigator.vibrate(1000);
 
       moveToNextWord();
+    } else {
+      window.navigator.vibrate(200);
     }
     userInput.value = ""; // Clear input field after each submission
   }
