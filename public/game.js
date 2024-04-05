@@ -206,7 +206,6 @@ document.addEventListener("DOMContentLoaded", () => {
           .share({
             title: "Curura",
             text: shareMessage,
-            url: "https://curura.bi", // This is your game's URL
           })
           .then(() => console.log("Successful share"))
           .catch((error) => console.log("Error sharing", error));
