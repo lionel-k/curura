@@ -96,8 +96,13 @@ button:hover {
   margin: 4vh 0 2vh; /* Adjust margin to provide more space before the results */
 }
 
+#countdown-timer {
+  font-size: 2rem;
+}
+
 @media (max-width: 768px) {
   #timer,
+  #countdown-timer,
   #word-display,
   #results {
     font-size: 2rem; /* Adjust font size for smaller devices */

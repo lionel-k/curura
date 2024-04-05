@@ -162,6 +162,29 @@ document.addEventListener("DOMContentLoaded", () => {
     return greeting;
   };
 
+  function updateCountdown() {
+    const now = new Date();
+    const midnight = new Date(now);
+    midnight.setHours(24, 0, 0, 0); // Set to next midnight.
+
+    const secondsUntilMidnight = (midnight - now) / 1000;
+    const hours = String(Math.floor(secondsUntilMidnight / 3600)).padStart(
+      2,
+      "0"
+    );
+    const minutes = String(Math.floor(secondsUntilMidnight / 60) % 60).padStart(
+      2,
+      "0"
+    );
+    const seconds = String(Math.floor(secondsUntilMidnight) % 60).padStart(
+      2,
+      "0"
+    );
+
+    const countdownTimer = document.getElementById("time-remaining");
+    countdownTimer.textContent = `${hours}:${minutes}:${seconds}`;
+  }
+
   function endGame() {
     let correctWordsText =
       correctWordsCount === 1
@@ -209,6 +232,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     storeResultsInLocalStorage();
+    const countdownTimer = document.getElementById("countdown-timer");
+    countdownTimer.style.display = "block";
+
+    // Start the countdown
+    updateCountdown(); // Update immediately to avoid initial delay
+    setInterval(updateCountdown, 1000);
   }
 
   function storeResultsInLocalStorage() {
