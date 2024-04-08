@@ -312,4 +312,10 @@ document.addEventListener("DOMContentLoaded", () => {
     .addEventListener("click", function () {
       submitWord();
     });
+
+  document.getElementById("skip-button").addEventListener("click", function () {
+    moveToNextWord();
+    window.navigator.vibrate(50);
+    window.navigator.vibrate(50);
+  });
 });

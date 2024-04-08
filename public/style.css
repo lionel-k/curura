@@ -169,3 +169,16 @@ button:hover {
 .blink {
   animation: blink 1s linear infinite;
 }
+
+#button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#submit-button,
+#skip-button {
+  padding: 10px 20px;
+  margin: 0;
+}
