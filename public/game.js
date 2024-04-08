@@ -213,10 +213,12 @@ document.addEventListener("DOMContentLoaded", () => {
         ? "Wacuruye ijambo rimwe ryinyegeje"
         : `Wacuruye amajambo ${correctWordsCount} yinyegeje`;
 
-    alert(`Umwanya waheze! ${correctWordsText}.`);
     userInput.disabled = true; // Disable further input
     gameHasEndedToday = true;
-    wordDisplay.textContent = "--------"; // Clear the word display
+
+    const currentWord = words[currentWordIndex];
+    console.log("last word", currentWord);
+    wordDisplay.textContent = currentWord;
 
     const resultsDisplay = document.getElementById("results");
     resultsDisplay.textContent = `${correctWordsText} uno musi. Uragaruka ejo gukina kandi. ${haveAGoodDay()}!`;
