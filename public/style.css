@@ -23,14 +23,9 @@ html {
   box-sizing: border-box; /* Ensures padding does not affect the overall width */
 }
 
-/* #leaderboard-container {
-  margin: auto;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+#leaderboard-container {
   font-size: 2rem;
-} */
+}
 
 footer#footer {
   color: black;
