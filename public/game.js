@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentWordIndex = 0;
   let correctWordsCount = getTodayCorrectWordsCount(); // Get today's correct words count if available
   let countdown;
-  let gameDuration = 257;
+  let gameDuration = 10;
   const today = new Date();
   let gameHasEndedToday = false;
 
@@ -232,6 +232,15 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("game-container").appendChild(shareButton);
     }
 
+    let leaderboardButton = document.getElementById("leaderboard-button");
+    if (!leaderboardButton) {
+      leaderboardButton = document.createElement("button");
+      leaderboardButton.id = "leaderboard-button";
+      leaderboardButton.innerHTML =
+        '<i class="fas fa-trophy leaderboard-icon"></i> Ihiganwa';
+      document.getElementById("game-container").appendChild(leaderboardButton);
+    }
+
     shareButton.addEventListener("click", () => {
       const shareMessage = `Uno musi ${todayInKirundi},\n\nNacuruye amajambo ${correctWordsCount}. \n\nhttps://curura.bi`;
 
@@ -253,6 +262,10 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         );
       }
+    });
+
+    leaderboardButton.addEventListener("click", function () {
+      window.location.href = "/leaderboard"; // Redirects to the leaderboard page
     });
 
     storeResultsInLocalStorage();
