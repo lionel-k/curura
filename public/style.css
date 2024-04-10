@@ -185,7 +185,6 @@ button:hover {
 }
 
 #leaderboard-container {
-  max-width: 800px; /* or your desired width */
   margin: auto;
   padding: 20px;
   display: flex;
