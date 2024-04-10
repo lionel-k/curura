@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function displayNextWord() {
     const currentWord = words[currentWordIndex];
-    console.log(currentWord);
+    // console.log(currentWord);
     const shuffledWord = shuffleWord(currentWord);
     if (gameHasEndedToday) {
       wordDisplay.textContent = "--------";
@@ -217,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
     gameHasEndedToday = true;
 
     const currentWord = words[currentWordIndex];
-    console.log("last word", currentWord);
+    // console.log("last word", currentWord);
     wordDisplay.textContent = currentWord;
 
     const resultsDisplay = document.getElementById("results");
