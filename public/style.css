@@ -184,10 +184,12 @@ button:hover {
 }
 
 #leaderboard-container {
-  max-width: 800px;
-  margin: 0 auto;
+  max-width: 800px; /* or your desired width */
+  margin: auto;
   padding: 20px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 table {
@@ -216,11 +218,17 @@ tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 
-footer {
-  margin-top: 40px;
+.back-to-game {
+  margin-top: 20px;
 }
 
-footer a {
-  text-decoration: none;
-  color: #333;
+body,
+html {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#footer {
+  margin-top: auto; /* Pushes the footer to the bottom */
 }
