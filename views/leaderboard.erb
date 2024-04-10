@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leaderboard</title>
+  <link rel="stylesheet" href="/style.css?<%= @version %>" type="text/css">
+</head>
+<body>
+  <div id="leaderboard-container">
+    <h1>Ihiganwa mpuzamakungu</h1>
+    <!-- Add leaderboard stats here -->
+    <table>
+      <!-- This is where you will loop through your data and fill out the leaderboard -->
+      <% # Your backend code to loop through the leaderboard data will go here %>
+      <tr>
+        <th>#</th>
+        <th>igihugu</th>
+        <th>amanota</th>
+      </tr>
+      <!-- Sample data, replace with actual data from the backend -->
+      <tr>
+        <td>1</td>
+        <td>🇧🇮 Uburundi</td>
+        <td>3 459 060</td>
+      </tr>
+      <!-- Repeat for other entries -->
+    </table>
+    <!-- Add other leaderboard stats in a similar fashion -->
+  </div>
+  <!-- Link back to the game or home page -->
+  <a href="/">Back to game</a>
+</body>
+</html>
