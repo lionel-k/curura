@@ -7,27 +7,60 @@
 </head>
 <body>
   <div id="leaderboard-container">
-    <h1>Ihiganwa mpuzamakungu</h1>
-    <!-- Add leaderboard stats here -->
-    <table>
-      <!-- This is where you will loop through your data and fill out the leaderboard -->
-      <% # Your backend code to loop through the leaderboard data will go here %>
-      <tr>
-        <th>#</th>
-        <th>igihugu</th>
-        <th>amanota</th>
-      </tr>
-      <!-- Sample data, replace with actual data from the backend -->
-      <tr>
-        <td>1</td>
-        <td>🇧🇮 Uburundi</td>
-        <td>3 459 060</td>
-      </tr>
-      <!-- Repeat for other entries -->
-    </table>
-    <!-- Add other leaderboard stats in a similar fashion -->
+    <h1>Leaderboard</h1>
+
+    <!-- User's ranking -->
+    <section id="user-ranking">
+      <h2>Your Rankings</h2>
+      <p>Country Rank: #<span id="user-country-rank">1</span></p>
+      <p>World Rank: #<span id="user-world-rank">37</span></p>
+    </section>
+
+    <!-- Country word counts -->
+    <section id="country-word-counts">
+      <h2>Country Word Counts</h2>
+      <table>
+        <tr>
+          <th>Rank</th>
+          <th>Country</th>
+          <th>Words Found</th>
+        </tr>
+        <!-- Sample row -->
+        <tr>
+          <td>1</td>
+          <td>🇧🇮 Uburundi</td>
+          <td>3459060</td>
+        </tr>
+        <!-- More rows here -->
+      </table>
+    </section>
+
+    <!-- Players per country -->
+    <section id="players-per-country">
+      <h2>Players Per Country</h2>
+      <table>
+        <tr>
+          <th>Rank</th>
+          <th>Country</th>
+          <th>Players</th>
+        </tr>
+        <!-- Sample row -->
+        <tr>
+          <td>1</td>
+          <td>🇧🇮 Uburundi</td>
+          <td>39</td>
+        </tr>
+        <!-- More rows here -->
+      </table>
+    </section>
+
+    <!-- Back to game link -->
+    <footer>
+      <a href="/">Back to game</a>
+    </footer>
+    <footer id="footer">
+    <a href="https://linktr.ee/ndakundaikirundi" target="_blank">© 2024 Ndakunda Ikirundi</a>
+    </footer>
   </div>
-  <!-- Link back to the game or home page -->
-  <a href="/">Back to game</a>
 </body>
 </html>
