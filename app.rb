@@ -18,7 +18,21 @@ get '/words' do
 end
 
 get '/leaderboard' do
-  # You will also fetch and pass leaderboard data to the template
-  @leaderboard = []
+  @international_rank = '4/7'
+  @national_rank = '3/4'
+  @best_players = [
+    { 'rank' => 1, 'word_count' => 18, 'country' => 'Burundi' },
+    { 'rank' => 2, 'word_count' => 17, 'country' => 'Burundi' },
+    { 'rank' => 3, 'word_count' => 15, 'country' => 'France' },
+    { 'rank' => 4, 'word_count' => 12, 'country' => 'Burundi' },
+    { 'rank' => 5, 'word_count' => 11, 'country' => 'Canada' },
+    { 'rank' => 6, 'word_count' => 7, 'country' => 'France' },
+  ]
+  @players_by_country = [
+    { 'rank' => 1, 'country' => 'Burundi', 'count' => 4 },
+    { 'rank' => 2, 'country' => 'France', 'count' => 2 },
+    { 'rank' => 3, 'country' => 'Canada', 'count' => 1 },
+  ]
+
   erb :leaderboard
 end
