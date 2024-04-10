@@ -150,7 +150,8 @@ button:hover {
   justify-content: center;
 }
 
-.share-icon {
+.share-icon,
+.back-icon {
   margin-right: 15px; /* Adjust the space as needed */
 }
 
