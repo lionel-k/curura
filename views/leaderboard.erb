@@ -18,7 +18,7 @@
       <h2>Ikibanza cawe</h2>
       <table>
         <tr>
-          <th>Mu gihugu 🇧🇮</th>
+          <th>Mu gihugu: <%= @country %></th>
           <th>Kw'isi yose 🌍</th>
         </tr>
         <tr>
@@ -42,7 +42,7 @@
         <tr>
             <td><%= player['rank'] %></td>
             <td><%= player['country'] %></td>
-            <td><%= player['word_count'] %></td>
+            <td><%= player['score'] %></td>
         </tr>
         <% end %>
       </table>
