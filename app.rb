@@ -1,9 +1,13 @@
 #! /usr/bin/env ruby
 
 require 'sinatra'
+require 'sinatra/reloader'
 require 'pry'
 require 'dotenv/load'
 require 'httparty'
+require 'pry'
+
+Dotenv.load
 
 before do
   cache_control :no_store
