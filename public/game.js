@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     leaderboardButton.addEventListener("click", function () {
-      window.location.href = "/leaderboard"; // Redirects to the leaderboard page
+      window.location.href = "/leaderboard?country=Burundi&score=5";
     });
 
     storeResultsInLocalStorage();
