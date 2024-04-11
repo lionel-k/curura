@@ -28,8 +28,8 @@ get '/leaderboard' do
     HTTParty.get(
       "#{backend_url}/api/v1/curura/rankings?country=#{@country}&score=#{score}",
     )
-  @international_rank = response['international_rank'] || 'N/A'
-  @national_rank = response['national_rank'] || 'N/A'
+  @international_rank = response['international_rank'] || '-'
+  @national_rank = response['national_rank'] || '-'
   @best_players =
     response['best_players'] || [
       { 'rank' => 1, 'score' => 18, 'country' => 'Burundi' },
