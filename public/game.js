@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const backendUrl = document.body.getAttribute("data-backend-url");
   const timerDisplay = document.getElementById("timer");
   const wordDisplay = document.getElementById("word-display");
   const userInput = document.getElementById("user-input");
@@ -239,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!localStorage.getItem("gameSaved")) {
       const { country, timezone } = await fetchCountryAndTimezone();
 
-      fetch("http://localhost:5000/api/v1/curura/games", {
+      fetch(`${backendUrl}/api/v1/curura/games`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

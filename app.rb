@@ -12,6 +12,7 @@ Dotenv.load
 before do
   cache_control :no_store
   @version = Time.now.to_i.to_s
+  @backend_url = ENV['BACKEND_URL']
 end
 
 set :bind, '0.0.0.0'
@@ -25,7 +26,6 @@ get '/words' do
 end
 
 get '/leaderboard' do
-  backend_url = ENV['BACKEND_URL']
   @country = params[:country]
   score = params[:score]
   response =
