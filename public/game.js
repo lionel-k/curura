@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const backendUrl = document.body.getAttribute("data-backend-url");
   const timerDisplay = document.getElementById("timer");
   const wordDisplay = document.getElementById("word-display");
   const userInput = document.getElementById("user-input");
@@ -207,7 +208,20 @@ document.addEventListener("DOMContentLoaded", () => {
     countdownTimer.textContent = `${hours}:${minutes}:${seconds}`;
   }
 
-  function endGame() {
+  async function fetchCountryAndTimezone() {
+    try {
+      const response = await fetch("https://ipapi.co/json/");
+      const data = await response.json();
+      return {
+        country: data.country_name,
+        timezone: data.timezone,
+      };
+    } catch (error) {
+      console.error("Error fetching country and timezone:", error);
+    }
+  }
+
+  async function endGame() {
     let correctWordsText =
       correctWordsCount === 1
         ? "Wacuruye ijambo rimwe ryinyegeje"
@@ -222,6 +236,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const resultsDisplay = document.getElementById("results");
     resultsDisplay.textContent = `${correctWordsText} uno musi. Uragaruka ejo gukina kandi. ${haveAGoodDay()}!`;
+
+    if (!localStorage.getItem("gameSaved")) {
+      const { country, timezone } = await fetchCountryAndTimezone();
+      localStorage.setItem("country", country);
+
+      fetch(`${backendUrl}/api/v1/curura/games`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          game: {
+            country: country,
+            score: correctWordsCount,
+            timezone: timezone,
+            start_time: today,
+          },
+        }),
+      })
+        .then((response) => {
+          if (response.ok) {
+            localStorage.setItem("gameSaved", "true");
+            console.log("Game saved successfully!");
+          } else {
+            console.error("Failed to save the game. Response:", response);
+          }
+        })
+        .catch((error) => {
+          console.error("Error saving game:", error);
+        });
+    }
 
     let shareButton = document.getElementById("share-button");
     if (!shareButton) {
@@ -265,7 +310,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     leaderboardButton.addEventListener("click", function () {
-      window.location.href = "/leaderboard?country=Burundi&score=5";
+      const country = localStorage.getItem("country");
+      window.location.href =
+        "/leaderboard?score=" + correctWordsCount + "&country=" + country;
     });
 
     storeResultsInLocalStorage();
@@ -287,6 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const startTime = hasGameStartedToday();
   if (!startTime) {
+    localStorage.removeItem("gameSaved");
     const now = new Date();
     saveGameStartTime(now);
     startTimer(gameDuration);
