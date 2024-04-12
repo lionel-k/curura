@@ -239,6 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!localStorage.getItem("gameSaved")) {
       const { country, timezone } = await fetchCountryAndTimezone();
+      localStorage.setItem("country", country);
 
       fetch(`${backendUrl}/api/v1/curura/games`, {
         method: "POST",
@@ -282,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
       leaderboardButton.id = "leaderboard-button";
       leaderboardButton.innerHTML =
         '<i class="fas fa-trophy leaderboard-icon"></i> Ihiganwa';
-      // document.getElementById("game-container").appendChild(leaderboardButton);
+      document.getElementById("game-container").appendChild(leaderboardButton);
     }
 
     shareButton.addEventListener("click", () => {
@@ -309,7 +310,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     leaderboardButton.addEventListener("click", function () {
-      window.location.href = "/leaderboard?country=Burundi&score=5";
+      const country = localStorage.getItem("country");
+      window.location.href =
+        "/leaderboard?score=" + correctWordsCount + "&country=" + country;
     });
 
     storeResultsInLocalStorage();
