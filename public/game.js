@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentWordIndex = 0;
   let correctWordsCount = getTodayCorrectWordsCount(); // Get today's correct words count if available
   let countdown;
-  let gameDuration = 10;
+  let gameDuration = 257;
   const today = new Date();
   let gameHasEndedToday = false;
 
@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function displayNextWord() {
     const currentWord = words[currentWordIndex];
-    console.log(currentWord);
+    // console.log(currentWord);
     const shuffledWord = shuffleWord(currentWord);
     if (gameHasEndedToday) {
       wordDisplay.textContent = "--------";
