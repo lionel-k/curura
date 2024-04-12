@@ -283,7 +283,7 @@ document.addEventListener("DOMContentLoaded", () => {
       leaderboardButton.id = "leaderboard-button";
       leaderboardButton.innerHTML =
         '<i class="fas fa-trophy leaderboard-icon"></i> Ihiganwa';
-      document.getElementById("game-container").appendChild(leaderboardButton);
+      // document.getElementById("game-container").appendChild(leaderboardButton);
     }
 
     shareButton.addEventListener("click", () => {
