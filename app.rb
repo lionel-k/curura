@@ -1,5 +1,4 @@
 #! /usr/bin/env ruby
-# ci
 
 require 'sinatra'
 require 'sinatra/reloader'
