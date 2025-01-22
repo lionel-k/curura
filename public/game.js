@@ -287,7 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     shareButton.addEventListener("click", () => {
-      const shareMessage = `Uno musi ${todayInKirundi},\n\nNacuruye amajambo ${correctWordsCount}. \n\nhttps://curura.bi`;
+      const shareMessage = `Uno musi ${todayInKirundi},\n\nNacuruye amajambo ${correctWordsCount}. \n\nhttps://curura.aho.bi`;
 
       if (navigator.share) {
         navigator
